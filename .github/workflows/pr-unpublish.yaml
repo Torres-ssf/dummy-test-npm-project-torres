@@ -1,0 +1,29 @@
+
+name: Unpublish Pull Request NPM tag
+
+on:
+  pull_request_target:
+    types:
+      - closed
+      - merged
+
+jobs:
+  unpublish-pr:
+    name: "Unpublish Pull Request NPM tag"
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: CI Setup
+        uses: ./.github/actions/ci-setup
+
+      - name: Ensure NPM access
+        run: npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Unpublish NPM tag: pr-${{ github.event.pull_request.number }}
+        id: unpublish
+        run: npm --force unpublish pr-${{ github.event.pull_request.number }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
