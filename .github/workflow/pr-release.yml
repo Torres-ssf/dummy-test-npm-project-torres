@@ -1,7 +1,10 @@
 name: Release to @pr-<number> tag on npm
+
 on:
   pull_request:
-  workflow_dispatch:
+    types:
+      - opened
+      - synchronize
 
 jobs:
   release-pr:
