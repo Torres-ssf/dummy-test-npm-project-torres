@@ -1,6 +1,6 @@
 {
   "name": "dummy-test-npm-project-torres",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple utility library for testing purposes",
   "main": "utility.js",
   "scripts": {
