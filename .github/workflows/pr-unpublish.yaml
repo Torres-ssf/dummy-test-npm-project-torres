@@ -26,7 +26,7 @@ jobs:
       - name: Get package versions for PR tag
         id: pr_versions
         run: |
-          VERSIONS=$(npm view <your-package-name> versions --json)
+          VERSIONS=$(npm view dummy-test-npm-project-torres versions --json)
           PR_VERSIONS=$(echo "$VERSIONS" | tr ',' '\n' | tr -d '[]"' | grep -F "pr${{ github.event.pull_request.number }}" | xargs)
           echo "::set-output name=versions::$PR_VERSIONS"
 
@@ -36,7 +36,7 @@ jobs:
           for VERSION in ${{ steps.pr_versions.outputs.versions }}
           do
             echo "Unpublishing version $VERSION"
-            npm --force unpublish <your-package-name>@${VERSION}
+            npm --force unpublish dummy-test-npm-project-torres@${VERSION}
           done
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
