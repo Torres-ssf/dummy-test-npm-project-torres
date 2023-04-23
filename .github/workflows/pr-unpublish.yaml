@@ -5,7 +5,6 @@ on:
   pull_request_target:
     types:
       - closed
-      - merged
 
 jobs:
   unpublish-pr:
@@ -21,7 +20,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Unpublish NPM tag: pr-${{ github.event.pull_request.number }}
+      - name: Unpublish NPM tag
         id: unpublish
         run: npm --force unpublish pr-${{ github.event.pull_request.number }}
         env:
