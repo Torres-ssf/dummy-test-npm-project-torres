@@ -23,9 +23,21 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Unpublish NPM tag
-        id: unpublish
-        run: npm --force unpublish dummy-test-npm-project-torres@pr-${{ github.event.pull_request.number }}
+      - name: Get package versions for PR tag
+        id: pr_versions
+        run: |
+          VERSIONS=$(npm view <your-package-name> versions --json)
+          PR_VERSIONS=$(echo "$VERSIONS" | tr ',' '\n' | tr -d '[]"' | grep -F "pr${{ github.event.pull_request.number }}" | xargs)
+          echo "::set-output name=versions::$PR_VERSIONS"
+
+      - name: Unpublish NPM versions
+        if: steps.pr_versions.outputs.versions != ''
+        run: |
+          for VERSION in ${{ steps.pr_versions.outputs.versions }}
+          do
+            echo "Unpublishing version $VERSION"
+            npm --force unpublish <your-package-name>@${VERSION}
+          done
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
