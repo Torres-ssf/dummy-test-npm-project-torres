@@ -1,0 +1,11 @@
+{
+  "name": "dummy-test-npm-project-torres",
+  "version": "1.0.0",
+  "description": "A simple utility library for testing purposes",
+  "main": "utility.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sergio Torres",
+  "license": "MIT"
+}
