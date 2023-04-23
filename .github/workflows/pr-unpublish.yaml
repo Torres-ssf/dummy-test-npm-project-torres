@@ -25,7 +25,7 @@ jobs:
 
       - name: Unpublish NPM tag
         id: unpublish
-        run: npm --force unpublish pr-${{ github.event.pull_request.number }}
+        run: npm --force unpublish dummy-test-npm-project-torres@pr-${{ github.event.pull_request.number }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
