@@ -31,7 +31,7 @@ jobs:
         run: |
           VERSION=$(node -p "require('./package.json').version")
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
-          PR_VERSION="${VERSION}-pr${{ github.event.pull_request.number }}-${TIMESTAMP}"
+          PR_VERSION="${VERSION}-pr-${{ github.event.pull_request.number }}-${TIMESTAMP}"
           echo "PR version: $PR_VERSION"
           echo "::set-output name=pr_version::$PR_VERSION"
 

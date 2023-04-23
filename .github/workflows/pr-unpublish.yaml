@@ -27,7 +27,7 @@ jobs:
         id: pr_versions
         run: |
           VERSIONS=$(npm view dummy-test-npm-project-torres versions --json)
-          PR_VERSIONS=$(echo "$VERSIONS" | tr ',' '\n' | tr -d '[]"' | grep -F "pr${{ github.event.pull_request.number }}" | xargs)
+          PR_VERSIONS=$(echo "$VERSIONS" | tr ',' '\n' | tr -d '[]"' | grep -F "pr-${{ github.event.pull_request.number }}" | xargs)
           echo "::set-output name=versions::$PR_VERSIONS"
 
       - name: Unpublish NPM versions
