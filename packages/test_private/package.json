@@ -8,8 +8,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sergio Torres",
-  "license": "MIT",
-  "dependencies": {
-    "sax": "^1.2.4"
-  }
+  "license": "MIT"
 }
