@@ -24,9 +24,9 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Install PNPM 
-      - uses: pnpm/action-setup@v2
-          with:
-            version: 6.0.2
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.0.2
 
       - name: Get package versions for PR tag
         id: pr_versions
