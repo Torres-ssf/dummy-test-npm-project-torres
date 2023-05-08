@@ -46,6 +46,8 @@ jobs:
           done 
           echo "name=packages::$PACKAGE@$PACKAGE_VERSIONS"
           echo "name=packages::$PACKAGE@$PACKAGE_VERSIONS" >> $GITHUB_OUTPUT
+          echo "::set-output name=packages::$PACKAGE@$PACKAGE_VERSIONS"
+
       - name: Unpublish NPM PR Tag Versions
         run: |
           echo ${{ steps.pr_versions.outputs.packages }}
