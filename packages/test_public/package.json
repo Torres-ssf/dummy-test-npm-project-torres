@@ -1,5 +1,5 @@
 {
-  "name": "dummy-test-npm-project-torres",
+  "name": "@dummy-test-npm-project-torres/public",
   "version": "1.0.3",
   "description": "A simple utility library for testing purposes",
   "main": "utility.js",
