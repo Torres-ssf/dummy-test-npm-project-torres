@@ -14,6 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+    
       - name: CI Setup
         uses: ./.github/actions/ci-setup
 
@@ -22,9 +23,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Install PNPM 
+        uses: pnpm/action-setup@v2
+
       - name: Get package versions for PR tag
         id: pr_versions
-        uses: pnpm/action-setup@v2
         run: |
           source /home/runner/.bashrc
           PACKAGES=$(pnpm list -r --depth=-1 | awk '{ if($0 !~ /^[[:space:]]*$/) print $1}' | sed 's/@[0-9\.]*$//')
