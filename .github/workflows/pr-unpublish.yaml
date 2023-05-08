@@ -46,7 +46,7 @@ jobs:
           done 
           echo "name=packages::$PACKAGE@$PACKAGE_VERSIONS" >> $GITHUB_OUTPUT
       - name: Unpublish NPM PR Tag Versions
-        if: steps.pr_versions.outputs.versions != ''
+        if: steps.pr_versions.outputs.packages != ''
         run: |
           for PACKAGE in ${{ steps.pr_versions.outputs.packages }}
           do
