@@ -48,7 +48,7 @@ jobs:
           echo "name=packages::$PACKAGE@$PACKAGE_VERSIONS" >> $GITHUB_OUTPUT
       - name: Unpublish NPM PR Tag Versions
         run: |
-          echo steps.pr_versions.outputs.packages
+          echo ${{ steps.pr_versions.outputs.packages }}
           for PACKAGE in ${{ steps.pr_versions.outputs.packages }}
           do
             echo "Unpublishing ${PACKAGE}"
