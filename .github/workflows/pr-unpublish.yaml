@@ -17,8 +17,6 @@ jobs:
       - name: CI Setup
         uses: ./.github/actions/ci-setup
 
-      - name: Install PNPM
-        run: wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -
       - name: Ensure NPM access
         run: npm whoami
         env:
@@ -26,6 +24,7 @@ jobs:
 
       - name: Get package versions for PR tag
         id: pr_versions
+          - uses: pnpm/action-setup@v2
         run: |
           source /home/runner/.bashrc
           PACKAGES=$(pnpm list -r --depth=-1 | awk '{ if($0 !~ /^[[:space:]]*$/) print $1}' | sed 's/@[0-9\.]*$//')
